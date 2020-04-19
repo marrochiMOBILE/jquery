@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+}
+.boxSearch {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    border: 1px solid #0988A9;
+}
+ul.listSearch {
+    padding-left: 0 !important;
+}
+.listSearch li{
+    background-color: #0988A9;
+    padding: 10px;
+    margin: 5px 0;
+    list-style: none;
+    color: #DAD9DE;
+}
+.listSearch li:hover {
+    background-color: #DAD9DE;
+    color: #0988A9;
+}
+    </style>
+  </head>  
+    <body>
+        <input type="text" class="boxSearch" placeholder="Search..." />
+        <ul class="listSearch">
+            <li>Web Master</li>
+            <li>Web Design</li>
+            <li>Web Programming</li>
+            <li>Graphic Design</li>
+            <li>Digital Marketing</li>
+            <li>Flash Animation</li>
+        </ul>
+
+        <script>
+            $(document).ready(function($){
+        
+                $('.listSearch li').each(function(){
+                    $(this).attr('searchData', $(this).text().toLowerCase());
+                });
+                $('.boxSearch').on('keyup', function(){
+                var dataList = $(this).val().toLowerCase();
+                    $('.listSearch li').each(function(){
+                        if ($(this).filter('[searchData *= ' + dataList + ']').length > 0 || dataList.length < 1) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                });
+        
+            });
+        </script>
+    </body>
+</html>
